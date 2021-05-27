@@ -17,7 +17,6 @@ function Form() {
   const classes = useStyles();
   const dispatch = useDispatch();
 
-  console.log(postData);
   const handleSubmit = e => {
     e.preventDefault();
 
@@ -31,7 +30,7 @@ function Form() {
         autoComplete="off"
         noValidate
         className={`${classes.root} ${classes.form}`}
-        onSubmit={e => handleSubmit(e)}
+        onSubmit={(e)=>handleSubmit(e)}
       >
         <Typography variant="h6">Creating a Memory</Typography>
         <TextField
