@@ -14,11 +14,12 @@ import moment from 'moment';
 
 import useStyles from './styles';
 import { useDispatch } from 'react-redux';
-import { deletePost } from '../../../actions/posts';
+import { deletePost, likePost } from '../../../actions/posts';
 
 const Post = ({ post, setCurrentId }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
+
   console.log(post);
 
   return (
@@ -49,12 +50,12 @@ const Post = ({ post, setCurrentId }) => {
       <div className={classes.details}>
         <Typography variant="body2" color="textSecondary" component="h2">
           {post &&
-            post.tags.map(tag => {
-              return tag
+            post.tags.map(tag =>
+              tag
                 .trim()
                 .split(' ')
-                .map(t => ` #${t}`);
-            })}
+                .map(t => `#${t} `)
+            )}
         </Typography>
       </div>
       <Typography className={classes.title} gutterBottom variant="h5">
@@ -66,8 +67,13 @@ const Post = ({ post, setCurrentId }) => {
         </Typography>
       </CardContent>
       <CardActions className={classes.cardActions}>
-        <Button size="small" color="primary" onClick={() => {}}>
-          <ThumbUpAltIcon fontSize="small" /> Like {post.likeCount}{' '}
+        <Button
+          size="small"
+          color="primary"
+          onClick={() => dispatch(likePost(post._id))}
+        >
+          <ThumbUpAltIcon fontSize="small" />
+          &nbsp; Like {post.likeCount}
         </Button>
         <Button
           size="small"
