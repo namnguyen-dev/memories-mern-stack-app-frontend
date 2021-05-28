@@ -44,15 +44,16 @@ const Post = ({ post, setCurrentId }) => {
       </div>
       <div className={classes.details}>
         <Typography variant="body2" color="textSecondary" component="h2">
-          {post.tags.map(tag => `#${tag} `)}
+          {post &&
+            post.tags.map(tag => {
+              return tag
+                .trim()
+                .split(' ')
+                .map(t => ` #${t}`);
+            })}
         </Typography>
       </div>
-      <Typography
-        className={classes.title}
-        gutterBottom
-        variant="h5"
-        component="h2"
-      >
+      <Typography className={classes.title} gutterBottom variant="h5">
         {post.title}
       </Typography>
       <CardContent>
@@ -61,18 +62,10 @@ const Post = ({ post, setCurrentId }) => {
         </Typography>
       </CardContent>
       <CardActions className={classes.cardActions}>
-        <Button
-          size="small"
-          color="primary"
-          onClick={() => {}}
-        >
+        <Button size="small" color="primary" onClick={() => {}}>
           <ThumbUpAltIcon fontSize="small" /> Like {post.likeCount}{' '}
         </Button>
-        <Button
-          size="small"
-          color="primary"
-          onClick={() => {}}
-        >
+        <Button size="small" color="primary" onClick={() => {}}>
           <DeleteIcon fontSize="small" /> Delete
         </Button>
       </CardActions>
